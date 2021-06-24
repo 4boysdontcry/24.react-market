@@ -1,0 +1,17 @@
+<script src="./axios.min.js"></script>
+<script>
+	var config = {
+		params: {
+			query: 'react'
+		},
+		headers: {
+			Authorization: 'KakaoAK 1ead7bdcf78403ae41f796dfa90b6bb6'
+		}
+	}
+	axios.get('https://dapi.kakao.com/v2/search/web', config)
+	.then(function(r){
+		console.log(r)
+	}).catch(function(err){
+		console.log(err)
+	})
+</script>

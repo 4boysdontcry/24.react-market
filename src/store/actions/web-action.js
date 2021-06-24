@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getSearchApi } from '../apis/index';
+import { getSearchApi } from '../apis'
 
-const getwebAction = createAsyncThunk('web/getWebAction', async (payload, thunk) => {
-	try{
-		const r = await getSearchApi(payload, 'web')
+const getWebAction = createAsyncThunk('web/getWebAction', async (payload, thunk) => {
+	try {
+		return await getSearchApi(payload, 'WEB_URL')
 	}
-	catch(err){
+	catch(err) {
 		throw err
 	}
 })
 
-export default getwebAction
+export { getWebAction }

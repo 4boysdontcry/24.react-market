@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-
 import Search from '../components/Search'
 
 const Logo = styled.h1`
@@ -17,8 +16,6 @@ const Logo = styled.h1`
 		color: #444;
 	}
 `
-
-
 
 const Home = () => {
 	return (

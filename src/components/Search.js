@@ -1,7 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import styled from 'styled-components'
 
-
 const Form = styled.div`
 	max-width: 80%;
 	margin: auto;

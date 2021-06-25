@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getWebAction } from '../actions/web-action'
+import { getClipAction } from '../actions/clip-action'
 
-const name = 'web'
+const name = 'clip'
 
 const initialState = {
 	query: '',
@@ -20,10 +20,10 @@ const reducers = {
 }
 
 const extraReducers = builder => builder
-.addCase(getWebAction.pending, (state, { payload }) => {
+.addCase(getClipAction.pending, (state, { payload }) => {
 	state.isQuering = true
 })
-.addCase(getWebAction.fulfilled, (state, { payload }) => {
+.addCase(getClipAction.fulfilled, (state, { payload }) => {
 	state.isQuering = false
 	state.err = null
 	state.isEnd = payload.isEnd
@@ -31,7 +31,7 @@ const extraReducers = builder => builder
 	state.listCnt = payload.listCnt
 	state.lists = payload.lists
 })
-.addCase(getWebAction.rejected, (state, { payload }) => {
+.addCase(getClipAction.rejected, (state, { payload }) => {
 	state.isQuering = false
 	state.err = payload
 	state.query = ''
@@ -41,14 +41,14 @@ const extraReducers = builder => builder
 	state.lists = []
 })
 
-const webReducers = createSlice({ name, initialState, reducers, extraReducers })
+const clipReducers = createSlice({ name, initialState, reducers, extraReducers })
 
-const getWebData = (query, size = 10) => (dispatch, getState) => {
+const getClipData = (query, size = 10) => (dispatch, getState) => {
 	// dispatch(actQuery(query))
-	dispatch(getWebAction({ query, size }))
+	dispatch(getClipAction({ query, size }))
 }
 
-export { getWebAction, getWebData }
-export const { actQuery } = webReducers.actions
-export default webReducers
+export { getClipAction, getClipData }
+export const { actQuery } = clipReducers.actions
+export default clipReducers
 

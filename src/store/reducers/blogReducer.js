@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getWebAction } from '../actions/web-action'
+import { getBlogAction } from '../actions/blog-action'
 
-const name = 'web'
+const name = 'blog'
 
 const initialState = {
 	query: '',
@@ -20,10 +20,10 @@ const reducers = {
 }
 
 const extraReducers = builder => builder
-.addCase(getWebAction.pending, (state, { payload }) => {
+.addCase(getBlogAction.pending, (state, { payload }) => {
 	state.isQuering = true
 })
-.addCase(getWebAction.fulfilled, (state, { payload }) => {
+.addCase(getBlogAction.fulfilled, (state, { payload }) => {
 	state.isQuering = false
 	state.err = null
 	state.isEnd = payload.isEnd
@@ -31,7 +31,7 @@ const extraReducers = builder => builder
 	state.listCnt = payload.listCnt
 	state.lists = payload.lists
 })
-.addCase(getWebAction.rejected, (state, { payload }) => {
+.addCase(getBlogAction.rejected, (state, { payload }) => {
 	state.isQuering = false
 	state.err = payload
 	state.query = ''
@@ -41,14 +41,14 @@ const extraReducers = builder => builder
 	state.lists = []
 })
 
-const webReducers = createSlice({ name, initialState, reducers, extraReducers })
+const blogReducers = createSlice({ name, initialState, reducers, extraReducers })
 
-const getWebData = (query, size = 10) => (dispatch, getState) => {
+const getBlogData = (query, size = 10) => (dispatch, getState) => {
 	// dispatch(actQuery(query))
-	dispatch(getWebAction({ query, size }))
+	dispatch(getBlogAction({ query, size }))
 }
 
-export { getWebAction, getWebData }
-export const { actQuery } = webReducers.actions
-export default webReducers
+export { getBlogAction, getBlogData }
+export const { actQuery } = blogReducers.actions
+export default blogReducers
 

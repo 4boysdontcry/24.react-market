@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getWebAction } from '../actions/web-action'
+import { getBookAction } from '../actions/book-action'
 
-const name = 'web'
+const name = 'book'
 
 const initialState = {
 	query: '',
@@ -20,10 +20,10 @@ const reducers = {
 }
 
 const extraReducers = builder => builder
-.addCase(getWebAction.pending, (state, { payload }) => {
+.addCase(getBookAction.pending, (state, { payload }) => {
 	state.isQuering = true
 })
-.addCase(getWebAction.fulfilled, (state, { payload }) => {
+.addCase(getBookAction.fulfilled, (state, { payload }) => {
 	state.isQuering = false
 	state.err = null
 	state.isEnd = payload.isEnd
@@ -31,7 +31,7 @@ const extraReducers = builder => builder
 	state.listCnt = payload.listCnt
 	state.lists = payload.lists
 })
-.addCase(getWebAction.rejected, (state, { payload }) => {
+.addCase(getBookAction.rejected, (state, { payload }) => {
 	state.isQuering = false
 	state.err = payload
 	state.query = ''
@@ -41,14 +41,14 @@ const extraReducers = builder => builder
 	state.lists = []
 })
 
-const webReducers = createSlice({ name, initialState, reducers, extraReducers })
+const bookReducers = createSlice({ name, initialState, reducers, extraReducers })
 
-const getWebData = (query, size = 10) => (dispatch, getState) => {
+const getBookData = (query, size = 10) => (dispatch, getState) => {
 	// dispatch(actQuery(query))
-	dispatch(getWebAction({ query, size }))
+	dispatch(getBookAction({ query, size }))
 }
 
-export { getWebAction, getWebData }
-export const { actQuery } = webReducers.actions
-export default webReducers
+export { getBookAction, getBookData }
+export const { actQuery } = bookReducers.actions
+export default bookReducers
 

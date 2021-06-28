@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 import Home from './pages/Home'
 import All from './pages/All'
@@ -9,36 +9,21 @@ import Clip from './pages/Clip'
 import Blog from './pages/Blog'
 import Book from './pages/Book'
 
-
 function App() {
 	return (
-		<BrowserRouter>
-			<div className="wrapper">
-				<Switch>
-					<Route exact path="/">
-						<Home />
-					</Route>
-					<Route exact path="/all">
-						<All />
-					</Route>
-					<Route exact path="/web">
-						<Web />
-					</Route>
-					<Route exact path="/img">
-						<Img />
-					</Route>
-					<Route exact path="/clip">
-						<Clip />
-					</Route>
-					<Route exact path="/blog">
-						<Blog />
-					</Route>
-					<Route exact path="/book">
-						<Book />
-					</Route>
-				</Switch>
-			</div>
-		</BrowserRouter>
+		<div className="wrapper">
+			<BrowserRouter>
+					<Switch>
+						<Route exact path="/" component={ Home } />
+						<Route exact path="/all" component={ All } />
+						<Route exact path="/web" component={ Web } />
+						<Route exact path="/img" component={ Img } />
+						<Route exact path="/clip" component={ Clip } />
+						<Route exact path="/blog" component={ Blog } />
+						<Route exact path="/book" component={ Book } />
+					</Switch>
+			</BrowserRouter>
+		</div>
 	);
 }
 

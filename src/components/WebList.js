@@ -6,36 +6,29 @@ import Title from './list/Title'
 import Content from './list/Content'
 import Time from './list/Time'
 
-
 const List = styled.a`
 	margin: 1em 0;
-  display: block;
-  font-family: ${ font.noto };
+	display: block;
+	font-family: ${ font.noto };
 `
 const Titles = styled.div`
-  margin-bottom: .75em;
+	margin-bottom: .75em;
 `
 const Contents = styled.div`
-  margin-bottom: .75em;
-  line-height: 1.25em !important;
-  font-weight: 300;
+	margin-bottom: .75em;
+	line-height: 1.25em;
 `
-const Information = styled.div`
-`
-
 
 const WebList = ({ data }) => {
 	return (
-		<List href={ data.url } target="blank">
+		<List href={ data.url } target="_blank">
 			<Titles>
-        <Title size="1.25em" value={ data.title } />
-      </Titles>
+				<Title size="1.25em" value={ data.title } />
+			</Titles>
 			<Contents>
-        <Content color={ color.dark } hoverColor={ color.primary } value={ data.contents } />
-      </Contents>
-      <Information>
-        <Time color={ color.grey } value={ data.contents } size="0.875em" /> | 
-      </Information>
+				<Content color={ color.dark } hoverColor={ color.primary } value={ data.contents } />
+			</Contents>
+			<Time color={ color.grey } value={ data.datetime } size="0.875em" />
 		</List>
 	);
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom';
 import { font, color, media, flex } from '../styled/index'
-import { style } from 'dom-helpers';
 
 const Wrap = styled.div`
   padding: .25em 0;

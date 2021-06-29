@@ -2,7 +2,10 @@ import { css } from "styled-components"
 
 export const font = {
   noto: `'Noto Sans KR', sans-serif;`,
-  notoSF: `'Noto Serif KR', serif;`
+  notoSF: `'Noto Serif KR', serif;`,
+  light: 'light',
+  normal: 'normal',
+  bold: 'bold',
 }
 
 export const color = {

@@ -12,6 +12,7 @@ import TitleSearch from '../components/TitleSearch'
 import WebList from '../components/WebList'
 import ImgList from '../components/ImgList'
 import ClipList from '../components/ClipList'
+import BlogList from '../components/BlogList'
 
 const ListWrapper = styled.div`
 	margin: 1em 0;
@@ -23,13 +24,15 @@ const ImgWrapper = styled(ListWrapper)`
 	flex-wrap: wrap;
 `
 const ClipWrapper = styled(ListWrapper)``
+const BlogWrapper = styled(ListWrapper)``
 
 
 const Home = () => {
-	const query = useSelector(state => state.query.query)
+	const query = useSelector(state => state.data.query)
 	const webList = useSelector(state => state.web.lists)
 	const imgList = useSelector(state => state.img.lists)
 	const clipList = useSelector(state => state.clip.lists)
+	const blogList = useSelector(state => state.blog.lists)
 
 	return (
 		<div>
@@ -37,24 +40,24 @@ const Home = () => {
 			<Search />
 			<NaviBar />
 			{
-				query !== ''
+				query !== '' 
 				? <div>
 						<TitleSearch name="website" link="/web" />
 						<WebWrapper>
 							{ webList.map(v => <WebList data={ v } key={ uuid() }/>) }
-						</WebWrapper>
-						
+						</WebWrapper>					
 						<TitleSearch name="Image" link="/img" />
 						<ImgWrapper>
 							{ imgList.map(v => <ImgList data={ v } key={ uuid() }/>) }
 						</ImgWrapper>
-
 						<TitleSearch name="Movie clip" link="/clip" />
-            <ClipWrapper>
-              { clipList.map(v => <ImgList data={ v } key={ uuid() }/>) }
-            </ClipWrapper>
-
+						<ClipWrapper>
+							{ clipList.map(v => <ClipList data={ v } key={ uuid() }/>) }
+						</ClipWrapper>
 						<TitleSearch name="Blog" link="/blog" />
+						<BlogWrapper>
+							{ blogList.map(v => <BlogList data={ v } key={ uuid() }/>) }
+						</BlogWrapper>
 						<TitleSearch name="Book" link="/book" />
 					</div> 
 				: ''

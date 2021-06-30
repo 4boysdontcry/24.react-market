@@ -12,7 +12,7 @@ const reducer = combineReducers({
   clip: clipReducer.reducer,
   blog: blogReducer.reducer,
   book: bookReducer.reducer,
-  query: dataReducer.reducer,
+  data: dataReducer.reducer,
 })
 
 export default reducer

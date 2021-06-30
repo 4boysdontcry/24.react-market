@@ -18,14 +18,14 @@ const My = styled.div`
 	}
 `
 
-const Content = ({ src, thumb, isImg=false }) => {
+const Content = ({ thumb, src=null, isImg=false }) => {
 
 	const onClick = useCallback(e => {
-    if(isImg){
-      // 모달오픈
-      // store의 modal: { isModal: true, src: src }
-    }
-    else window.open(src)
+		if(isImg) {
+			// 모달오픈
+			// store의 modal: { isModal: true, src: src }
+		}
+		else if(src) window.open(src)
 	}, [isImg, src])
 
 	return (

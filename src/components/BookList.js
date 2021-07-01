@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import styled from 'styled-components'
 import { color, media, font } from '../styled'
-import parse from 'html-react-parser';
+import parse from 'html-react-parser'
+
 
 import Title from './list/Title'
 import Time from './list/Time'
 import Image from './list/Image'
 import Content from './list/Content'
+import Price from './list/Price'
+
 
 const List = styled.div`
 	font-family: ${ font.noto };
@@ -48,37 +51,39 @@ const Titles = styled.a`
 	margin-bottom: .5em;
 	font-size: 1.25em;
 	@media ${ media.sm } {
-		font-size: 1em;
+		font-size: 1.125em;
 	}
 `
 const Author = styled.div`
 	color: ${ color.info };
+	margin-bottom: .5em;
 `
-const Bar = styled.span`
-	padding: 0 .25em;
+const PriceWrap = styled.div`
+margin-bottom: .5em;
 `
-const Price = styled.span`
-	font-size: .875em;
-	color: ${color.grey};
-`
-const Saleprice = styled.span`
-	font-size: 1.125em;
-	color: ${color.darker};
+const Publisher = styled.div`
+margin-bottom: .5em;
+color: ${ color.dark };
 `
 
 const Information = styled.div`
 	display: flex;
+	align-items: flex-start;
 	margin-bottom: .75em;
 	font-size: 1rem;
 	line-height: 1.25em;
 `
+const Isbn = styled.div`
+	margin-bottom: .5em;
+	color: ${color.default};
+`
 
-const price = (price, salePrice) => {
-	return (salePrice > 0) 
-	? `<span style="text-decoration: line-through;">${ price }</span> | <span>${ salePrice }</span>`
-	: `<span>${ price }</span>`
-}
+const Status = styled.span`
+	padding-left: .75em;
 
+`
+
+const noImg = '//via.placeholder.com/120x174/DC3545/FFFFFF?text=No+Image'
 
 const BookList = ({ data }) => {
 	return (
@@ -88,12 +93,19 @@ const BookList = ({ data }) => {
 			</Titles>
 			<Information>
 				<Imgs>
-					<Image thumb={ data.thumbnail } src={ data.url } />
+					<Image thumb={ data.thumbnail !== '' ? data.thumbnail : noImg } src={ data.url } />
 				</Imgs>
 				<ContentWrap>
 					<Author>{ data.authors.join(', ')}</Author>
-					<Price>{ parse(price(data.price, data.sale_price)) }</Price>
-					<Time color={ color.grey } value={ data.datetime } size="0.875em" />
+					<PriceWrap>
+						{ data.price > 0 ? <Price value={ data.price } color={ color.grey } through={ true } del={true} /> : '' }
+						{ data.price > 0 && data.sale_price !== -1 ? ' | ' : '' }
+						{ data.sale_price !== -1 ? <Price value={ data.sale_price } size="1.125em" color="#03f" /> : '' }
+						{ <Status>[{ data.status !== '' ? data.status : '판매중단' }]</Status> }
+					</PriceWrap>
+					<Publisher>{ data.publisher }</Publisher>
+					<Isbn>ISBN: { data.isbn }</Isbn>
+					<Time color={ color.grey } value={ data.datetime } size="0.875em" format="YYYY-MM-DD" />
 				</ContentWrap>
 			</Information>
 				<Content color={ color.dark } hoverColor={ color.darker } value={ data.contents } />

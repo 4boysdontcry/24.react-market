@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid'
 
 import styled from 'styled-components'
@@ -14,6 +14,7 @@ import ImgList from '../components/ImgList'
 import ClipList from '../components/ClipList'
 import BlogList from '../components/BlogList'
 import BookList from '../components/BookList'
+import { actQuery } from '../store/reducers/dataReducer';
 
 const ListWrapper = styled.div`
 	margin: 1em 0;

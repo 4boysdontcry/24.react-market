@@ -25,7 +25,6 @@ const TitleBar = () => {
 				<div className="img-wrap">
 					<img src="/logo.png" alt="logo" className="w-100" />
 				</div>
-				<div className="title-wrap">여러분의 친구 체리검색</div>
 			</Logo>
     </div>
   );

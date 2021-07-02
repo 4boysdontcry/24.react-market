@@ -47,8 +47,9 @@ const Home = () => {
 	const blogList = useSelector(state => state.blog.lists)
 	const bookList = useSelector(state => state.book.lists)
 
-  const [modal, setModal] = useState(false)
-  const [src, setSrc] = useState('')
+	const [modal, setModal] = useState(false)
+	const [src, setSrc] = useState()
+	const [thumb, setThumb] = useState()
 
 	useEffect(() => { // 시작할 때 한번만 실행
 		dispatch(actQuery(''))
@@ -63,15 +64,16 @@ const Home = () => {
 			dispatch(getBookData(query, { size:10 }))
 		}
 	}, [dispatch, query]);
+	
+	const handleModalClose = useCallback(v => {
+		setModal(v)
+	}, [])
 
-  const handleModalClose = useCallback(v => {
-    setModal(v)
-  },[])
-
-  const handleModalOpen = useCallback(src => {
-    setSrc(src)
-    setModal(true)
-  },[])
+	const handleModalOpen = useCallback((src, thumb) => {
+		setSrc(src)
+		setThumb(thumb)
+		setModal(true)
+	}, [])
 
 	return (
 		<div>
@@ -104,7 +106,7 @@ const Home = () => {
 					</div> 
 				: ''
 			}
-      {modal ? <Modal src={ src } handle={ handleModalClose } /> : '' }
+			{ modal ? <Modal src={ src } thumb={ thumb } handle={ handleModalClose } /> : '' }
 		</div>
 	)
 }

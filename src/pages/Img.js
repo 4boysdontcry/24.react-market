@@ -35,8 +35,9 @@ const Img = () => {
 	const query = useSelector(state => state.data.query)
 	const imgList = useSelector(state => state.img.lists)
 	const [page, setPage] = useState(1)
-  const [modal, setModal] = useState(false)
-  const [src, setSrc] = useState('')
+	const [modal, setModal] = useState(false)
+	const [src, setSrc] = useState('')
+	const [thumb, setThumb] = useState('')
 
 	useEffect(() => {
 		setPage(1)
@@ -53,14 +54,15 @@ const Img = () => {
 		}
 	}, [dispatch, page, query])
 
-  const handleModalClose = useCallback(v => {
-    setModal(v)
-  },[])
+	const handleModalClose = useCallback(v => {
+		setModal(v)
+	}, [])
 
-  const handleModalOpen = useCallback(src => {
-    setSrc(src)
-    setModal(true)
-  },[])
+	const handleModalOpen = useCallback((src, thumb) => {
+		setSrc(src)
+		setThumb(thumb)
+		setModal(true)
+	}, [])
 
 	return (
 		<Wrapper>
@@ -81,7 +83,7 @@ const Img = () => {
 			<InView onChange={onChangeView}>
 
 			</InView>
-      {modal ? <Modal src={ src } handle={ handleModalClose } /> : '' }
+			{ modal ? <Modal src={ src } thumb={ thumb } handle={ handleModalClose } /> : '' }
 		</Wrapper>
 	)
 }

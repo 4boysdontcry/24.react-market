@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid'
-
 import styled from 'styled-components'
 import { font, color } from '../styled'
 
-import { actQuery } from '../store/reducers/dataReducer';
+import { actQuery } from '../store/reducers/dataReducer'
 import { getWebData } from '../store/reducers/webReducer'
 import { getImgData } from '../store/reducers/imgReducer'
 import { getClipData } from '../store/reducers/clipReducer'
@@ -38,7 +37,6 @@ const BookWrapper = styled(ListWrapper)`
 	flex-wrap: wrap;
 `
 
-
 const Home = () => {
 	const dispatch = useDispatch()
 	const query = useSelector(state => state.data.query)
@@ -48,17 +46,20 @@ const Home = () => {
 	const blogList = useSelector(state => state.blog.lists)
 	const bookList = useSelector(state => state.book.lists)
 
-	useEffect(() => {
-		// dispatch(actQuery(''))
-		if(query && query !== '' ){
+	useEffect(() => { // 시작할 때 한번만 실행
+		dispatch(actQuery(''))
+	}, [dispatch]);
+
+	useEffect(() => {	// Query가 바뀌면 실행
+		if(query && query !== '') {
 			dispatch(getWebData(query, 10))
 			dispatch(getImgData(query, 14))
-			dispatch(getClipData(query, 14))
+			dispatch(getClipData(query, 10))
 			dispatch(getBlogData(query, 10))
 			dispatch(getBookData(query, 10))
 		}
 	}, [dispatch, query]);
-
+	
 
 	return (
 		<div>
@@ -68,10 +69,6 @@ const Home = () => {
 			{
 				query !== '' 
 				? <div>
-						<TitleSearch name="website" link="/web" />
-						<WebWrapper>
-							{ webList.map(v => <WebList data={ v } key={ uuid() }/>) }
-						</WebWrapper>					
 						<TitleSearch name="Image" link="/img" />
 						<ImgWrapper>
 							{ imgList.map(v => <ImgList data={ v } key={ uuid() }/>) }
@@ -80,6 +77,10 @@ const Home = () => {
 						<ClipWrapper>
 							{ clipList.map(v => <ClipList data={ v } key={ uuid() }/>) }
 						</ClipWrapper>
+						<TitleSearch name="website" link="/web" />
+						<WebWrapper>
+							{ webList.map(v => <WebList data={ v } key={ uuid() }/>) }
+						</WebWrapper>
 						<TitleSearch name="Blog" link="/blog" />
 						<BlogWrapper>
 							{ blogList.map(v => <BlogList data={ v } key={ uuid() }/>) }

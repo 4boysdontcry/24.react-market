@@ -17,17 +17,17 @@ const List = styled.div`
 const Imgs = styled.div`
 	padding: .25em;
 	border: 1px solid ${ color.primary };
-  flex-shrink: 0;
+	flex-shrink: 0;
 `
-const Titles = styled.a`
+const Titles = styled.span`
 	margin-bottom: .75em;
 	flex-grow: 1;
 	padding-left: 1em;
 	color: ${ color.dark };
-  font-size: 1.25em;
-  @media ${media.md}{
-    font-size: 1em;
-  }
+	font-size: 1em;
+	@media ${ media.sm } {
+		font-size: 1em;
+	}
 `
 const Author = styled.span``
 const Bar = styled.span`
@@ -52,8 +52,8 @@ const ClipList = ({ data }) => {
 			<Imgs>
 				<Image src={ data.url } thumb={ data.thumbnail } />
 			</Imgs>
-			<Titles href={ data.doc_url } target="_blank">
-				<Title value={ data.title } size="1.25em" color={ color.primary } />
+			<Titles>
+				<Title value={ data.title } color={ color.primary } size="1.25em" />
 				<Author>{ data.author }</Author>
 				<Bar>|</Bar>
 				<Duration>{ zeroPlus(Math.floor(data.play_time/60)) }:{ zeroPlus(data.play_time%60) }</Duration>
@@ -64,4 +64,4 @@ const ClipList = ({ data }) => {
 	);
 }
 
-export default ClipList;
+export default React.memo(ClipList)

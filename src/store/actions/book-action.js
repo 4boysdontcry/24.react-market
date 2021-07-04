@@ -3,7 +3,7 @@ import { getSearchApi } from '../apis'
 
 const getBookAction = createAsyncThunk('book/getBookAction', async (payload, thunk) => {
 	try {
-		return await getSearchApi(payload, 'Book_URL')
+		return await getSearchApi(payload, 'BOOK_URL')
 	}
 	catch(err) {
 		throw err

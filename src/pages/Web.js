@@ -31,12 +31,16 @@ const Header = styled.header`
 const Web = () => {
 	const dispatch = useDispatch();
 	const query = useSelector(state => state.data.query)
+	const listCnt = useSelector(state => state.web.listCnt)
 	const webList = useSelector(state => state.web.lists)
 	const [page, setPage] = useState(1)
 	
 	useEffect(() => {
 		dispatch(reset())
 		setPage(1)
+		return () => {
+			dispatch(reset())
+		}
 	}, [dispatch])
 	
 	useEffect(() => {
@@ -46,12 +50,12 @@ const Web = () => {
 	}, [dispatch, query]);
 
 	const onChangeView = useCallback((inView, entry) => {
-		if(inView && page < 50) {
+		if(inView && page < 50 && webList.length < listCnt) {
 			dispatch(actIsAdd(true))
 			dispatch(getWebData(query, { page: page + 1 }))
 			setPage(page + 1)
 		}
-	}, [dispatch, page, query])
+	}, [dispatch, page, query, listCnt, webList])
 
 	return (
 		<Wrapper>

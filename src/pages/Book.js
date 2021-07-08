@@ -32,12 +32,16 @@ const Header = styled.header`
 const Book = () => {
 	const dispatch = useDispatch();
 	const query = useSelector(state => state.data.query)
+	const listCnt = useSelector(state => state.book.listCnt)
 	const bookList = useSelector(state => state.book.lists)
 	const [page, setPage] = useState(1)
 	
 	useEffect(() => {
 		dispatch(reset())
 		setPage(1)
+		return () => {
+			dispatch(reset())
+		}
 	}, [dispatch])
 	
 	useEffect(() => {
@@ -47,12 +51,12 @@ const Book = () => {
 	}, [dispatch, query]);
 	
 	const onChangeView = useCallback((inView, entry) => {
-		if(inView && page < 50) {
+		if(inView && page < 50 && bookList.length < listCnt) {
 			dispatch(actIsAdd(true))
 			dispatch(getBookData(query, { page: page + 1 }))
 			setPage(page + 1)
 		}
-	}, [dispatch, page, query])
+	}, [dispatch, page, query, listCnt, bookList])
 
 	return (
 		<Wrapper>

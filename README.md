@@ -12,6 +12,7 @@
 
 
 ### 3. Image, Movie clip 등 버튼을 누르면 해당 항목의 결과만 보여준다.
+![버튼클릭](https://user-images.githubusercontent.com/80312556/125030060-7ae5ed00-e0c5-11eb-9400-812415cf47e9.PNG)
 
 
 ## 사용한 skill

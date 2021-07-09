@@ -6,6 +6,9 @@
 
 
 ### 2. 검색어를 입력하면 통합검색(Web문서, Image, Movie clip 등) 결과를 보여준다.
+![통합1](https://user-images.githubusercontent.com/80312556/125029954-5f7ae200-e0c5-11eb-868a-35b179e90aff.PNG)
+![통합2](https://user-images.githubusercontent.com/80312556/125029959-60ac0f00-e0c5-11eb-8021-c0dff8eb6694.PNG)
+![통합3](https://user-images.githubusercontent.com/80312556/125029961-6144a580-e0c5-11eb-9340-97184e3a0f42.PNG)
 
 
 ### 3. Image, Movie clip 등 버튼을 누르면 해당 항목의 결과만 보여준다.

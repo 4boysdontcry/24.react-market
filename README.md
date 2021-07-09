@@ -2,6 +2,7 @@
 
 ## 기능
 ### 1. 메인화면을 간단하게 구성하여 검색엔진으로써의 기능을 부각시킴
+![search](https://user-images.githubusercontent.com/80312556/125029861-378b7e80-e0c5-11eb-971e-4a43c9bea1ac.PNG)
 
 
 ### 2. 검색어를 입력하면 통합검색(Web문서, Image, Movie clip 등) 결과를 보여준다.
